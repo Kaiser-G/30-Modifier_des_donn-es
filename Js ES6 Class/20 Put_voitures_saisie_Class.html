@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exercice 1 (10 Post_voitures_saisie.html)_Class:</title>
+  <title>Exercice 1 (20 Put_voitures_saisie.html)_Class:</title>
   <link rel="stylesheet" href="" />
 
 
@@ -18,10 +18,11 @@
 </head>
 
 <body>
+  <input id="saisieCode" type="text" placeholder="Saisir un code">
   <input id="saisieMarque" type="text" placeholder="Saisir une marque">
   <input id="saisieCouleur" type="text" placeholder="Saisir une couleur">
   <input id="saisieCylindree" type="text" placeholder="Saisir une cylindrée">
-  <button id="btnGo">Ajouter</button>
+  <button id="btnGo">Modifier</button>
 
   <div id="reponse"></div>
 
@@ -31,7 +32,7 @@
   <script src="./js/Ajax_class.js"></script>
   <script>
     function RetourAjax(reponse) {
-      alert("Voiture bien ajoutée avec le code : " + reponse);
+      alert("Voiture bien modifiée avec le code : " + code);
 
     }
 
@@ -56,16 +57,15 @@
 
     }
 
-
-
     // Programme PRINCIPAL
     window.addEventListener('load', (event) => {
       let btn = document.getElementById("btnGo");
 
       btn.addEventListener("click", () => {
+        code = document.getElementById("saisieCode").value;
         let params = Get_zones();
-        let Ajax = new Ajax_Es6(urlApi);
-        Ajax.post(params, RetourAjax, Erreur_Ajax);
+        let Ajax = new Ajax_Es6(urlApi + "/" + code);
+        Ajax.put(params, RetourAjax, Erreur_Ajax);
       }, false);
     });
   </script>
